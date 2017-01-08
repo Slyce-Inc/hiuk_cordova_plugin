@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="hiku-plugin"
+    version="4.5.5">
+
+  <name>Hiku setup up</name>
+
+  <description>
+    This plugin allows you to set up and register hiku device.
+  </description>
+
+  <author>Bartosz Urbanski</author>
+
+  <license></license>
+
+  <keywords>Hiku</keywords>
+
+  <repo>https://github.com/barteku/hiku-cordova-plugin</repo>
+
+  <issue>https://github.com/barteku/hiku-cordova-plugin/issues</issue>
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0"/>
+  </engines>
+
+  <js-module src="www/Hiku.js" name="Hiku">
+    <clobbers target="Hiku"/>
+  </js-module>
+
+<!--   <js-module src="test/tests.js" name="tests">
+  </js-module> -->
+
+  <!-- ios -->
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="Hiku">
+        <param name="ios-package" value="Hiku"/>
+      </feature>
+    </config-file>
+    
+    <header-file src="src/ios/Hiku.h"/>
+    <source-file src="src/ios/Hiku.m"/>
+  </platform>
+
+  <!-- android 
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="Calendar">
+        <param name="android-package" value="nl.xservices.plugins.Calendar"/>
+      </feature>
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.READ_CALENDAR"/>
+      <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    </config-file>
+    <source-file src="src/android/nl/xservices/plugins/Calendar.java" target-dir="src/nl/xservices/plugins"/>
+    <source-file src="src/android/nl/xservices/plugins/accessor/AbstractCalendarAccessor.java"
+                 target-dir="src/nl/xservices/plugins/accessor"/>
+    <source-file src="src/android/nl/xservices/plugins/accessor/CalendarProviderAccessor.java"
+                 target-dir="src/nl/xservices/plugins/accessor"/>
+    <source-file src="src/android/nl/xservices/plugins/accessor/LegacyCalendarAccessor.java"
+                 target-dir="src/nl/xservices/plugins/accessor"/>
+    <dependency id="cordova-plugin-compat" version="^1.0.0" />
+  </platform>-->
+</plugin>
