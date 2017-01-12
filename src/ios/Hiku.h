@@ -7,7 +7,7 @@
 
 - (void) logoutUser:(CDVInvokedUrlCommand*)command;
 
-- (NSString) getApplicationTokenForUser:(CDVInvokedUrlCommand*)command;
+- (void) getApplicationTokenForUser:(CDVInvokedUrlCommand*)command;
 
 - (void) launchTipsFlow:(CDVInvokedUrlCommand*)command; 
 
