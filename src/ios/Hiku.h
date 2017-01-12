@@ -3,6 +3,10 @@
 
 @interface HikuPlugin : CDVPlugin
 
+@property (strong, nonatomic) HKSetupSDK* sdk;
+@property (nonatomic) BOOL shouldHideStatusBar;
+
+
 - (HikuPlugin*)pluginInitialize;
 
 - (void) logoutUser:(CDVInvokedUrlCommand*)command;
