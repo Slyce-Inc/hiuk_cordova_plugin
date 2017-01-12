@@ -33,6 +33,8 @@
 
   <!-- ios -->
   <platform name="ios">
+    <source-file src="lib/ios/libHKSetupSDK.a" framework="true" />
+      
     <config-file target="config.xml" parent="/*">
       <feature name="Hiku">
         <param name="ios-package" value="Hiku"/>
