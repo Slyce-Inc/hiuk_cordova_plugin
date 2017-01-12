@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="hiku-plugin"
-    version="4.5.5">
+    id="hiku-cordova-plugin"
+    version="1.0.0">
 
-  <name>Hiku setup up</name>
+  <name>Hiku setup ap</name>
 
   <description>
     This plugin allows you to set up and register hiku device.
@@ -21,7 +21,7 @@
   <issue>https://github.com/barteku/hiku-cordova-plugin/issues</issue>
 
   <engines>
-    <engine name="cordova" version=">=3.0.0"/>
+    <engine name="cordova" version=">=5.0.0"/>
   </engines>
 
   <js-module src="www/Hiku.js" name="Hiku">
