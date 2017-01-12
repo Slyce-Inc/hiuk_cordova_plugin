@@ -28,7 +28,6 @@
 
 }
 
-
 - (void) getApplicationTokenForUser:(CDVInvokedUrlCommand*)command
 {
     NSString* applicationToken = nil;
