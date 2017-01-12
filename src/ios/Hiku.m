@@ -4,11 +4,6 @@
 #import "Hiku.h"
 
 
-#define EMAIL @"<email_address_here>"
-#define APPID @"<app_id_here>"
-#define SHARED @"<shared_secret_here>"
-
-
 @implementation HikuPlugin
 
 @property (strong, nonatomic) HKSetupSDK* sdk;
@@ -17,7 +12,11 @@
 
 - (HikuPlugin*)pluginInitialize
 {
-    _sdk = [[HKSetupSDK alloc] initWithAppId:APPID shared:SHARED email:EMAIL];
+    NSString* apiId = [self.commandDelegate.settings objectForKey:[@"appIdHikuApi" lowercaseString]];
+    NSString* shared = [self.commandDelegate.settings objectForKey:[@"emailHikuApi" lowercaseString]];
+    NSString* email = [self.commandDelegate.settings objectForKey:[@"shareHikudApi" lowercaseString]];
+    
+    _sdk = [[HKSetupSDK alloc] initWithAppId:appId shared:shared email:email];
     _sdk.show_status_bar = [UIApplication sharedApplication].statusBarHidden;
     _sdk.delegate = self;
 }

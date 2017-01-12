@@ -33,7 +33,11 @@
 
   <!-- ios -->
   <platform name="ios">
-    <source-file src="lib/ios/libHKSetupSDK.a" framework="true" />
+    <framework src="src/ios/Frameworks/HKSetupSDKFramework.framework" framework="true" />
+    
+    <preference name="appIdHikuApi" value="yourApiKeyHere" />
+    <preference name="emailHikuApi" value="yourApiKeyHere" />
+    <preference name="shareHikudApi" value="yourApiKeyHere" />
       
     <config-file target="config.xml" parent="/*">
       <feature name="Hiku">
