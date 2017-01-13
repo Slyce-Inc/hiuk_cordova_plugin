@@ -34,7 +34,6 @@
   <!-- ios -->
   <platform name="ios">
     <framework src="src/ios/Frameworks/HKSetupSDKFramework.framework" custom="true" />
-    <!--<source-file framework="true" src="src/ios/Frameworks/HKSetupSDK/libHKSetupSDK.a"/>-->
     
     <preference name="appIdHikuApi" value="yourApiKeyHere" />
     <preference name="emailHikuApi" value="yourApiKeyHere" />
