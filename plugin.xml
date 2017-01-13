@@ -33,7 +33,7 @@
 
   <!-- ios -->
   <platform name="ios">
-    <framework src="src/ios/Frameworks/HKSetupSDKFramework.framework" framework="true" />
+    <framework src="src/ios/Frameworks/HKSetupSDKFramework.framework" type="projectReference" custom="true" />
     <!--<source-file framework="true" src="src/ios/Frameworks/HKSetupSDK/libHKSetupSDK.a"/>-->
     
     <preference name="appIdHikuApi" value="yourApiKeyHere" />
