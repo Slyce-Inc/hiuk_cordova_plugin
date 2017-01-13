@@ -33,8 +33,8 @@
 
   <!-- ios -->
   <platform name="ios">
-      <!--<framework src="src/ios/Frameworks/HKSetupSDKFramework.framework" framework="true" />-->
-    <source-file framework="true" src="src/ios/Frameworks/HKSetupSDK/libHKSetupSDK.a"/>
+    <framework src="src/ios/Frameworks/HKSetupSDKFramework.framework" framework="true" />
+    <!--<source-file framework="true" src="src/ios/Frameworks/HKSetupSDK/libHKSetupSDK.a"/>-->
     
     <preference name="appIdHikuApi" value="yourApiKeyHere" />
     <preference name="emailHikuApi" value="yourApiKeyHere" />
@@ -49,7 +49,7 @@
     
     <header-file src="src/ios/Hiku.h"/>
     <source-file src="src/ios/Hiku.m"/>
-    <header-file src="src/ios/Frameworks/HKSetupSDK/include/HKSetupSDK/HKSetupSDK.h"/>
+    <header-file src="src/ios/Frameworks/HKSetupSDKFramework.framework/Headers/include/HKSetupSDK/HKSetupSDK.h"/>
     
     
   </platform>
