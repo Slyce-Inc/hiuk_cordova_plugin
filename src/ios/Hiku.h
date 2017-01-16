@@ -7,6 +7,7 @@
 @property (nonatomic) BOOL shouldHideStatusBar;
 
 
+
 - (Hiku*)pluginInitialize;
 
 - (void) logoutUser:(CDVInvokedUrlCommand*)command;
