@@ -7,7 +7,7 @@
 @implementation Hiku
 
 
-- (HikuPlugin*)pluginInitialize
+- (Hiku*)pluginInitialize
 {
     NSString* apiId = [self.commandDelegate.settings objectForKey:[@"appIdHikuApi" lowercaseString]];
     NSString* shared = [self.commandDelegate.settings objectForKey:[@"emailHikuApi" lowercaseString]];
