@@ -4,7 +4,7 @@
 #import "Hiku.h"
 
 
-@implementation HikuPlugin
+@implementation Hiku
 
 
 - (HikuPlugin*)pluginInitialize

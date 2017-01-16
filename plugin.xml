@@ -33,7 +33,7 @@
 
   <!-- ios -->
   <platform name="ios">
-    <framework src="src/ios/Frameworks/HKSetupSDKFramework.framework" />
+    <framework src="src/ios/Frameworks/HKSetupSDKFramework.framework" custom="true" />
     
     <preference name="appIdHikuApi" value="yourApiKeyHere" />
     <preference name="emailHikuApi" value="yourApiKeyHere" />

@@ -1,7 +1,7 @@
 
 #import <Cordova/CDVPlugin.h>
 
-@interface HikuPlugin : CDVPlugin
+@interface Hiku : CDVPlugin
 
 @property (strong, nonatomic) HKSetupSDK* sdk;
 @property (nonatomic) BOOL shouldHideStatusBar;
