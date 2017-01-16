@@ -42,7 +42,7 @@
     <config-file target="config.xml" parent="/*">
       <feature name="Hiku">
         <param name="ios-package" value="Hiku"/>
-        <!-- param name="onload" value="true"/ -->
+        <param name="onload" value="true"/>
       </feature>
     </config-file>
     
