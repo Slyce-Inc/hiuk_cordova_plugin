@@ -1,5 +1,4 @@
 #import <Cordova/CDV.h>
-#import "HKSetupSDK.h"
 
 #import "Hiku.h"
 

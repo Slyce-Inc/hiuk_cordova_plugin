@@ -48,7 +48,6 @@
     
     <header-file src="src/ios/Hiku.h"/>
     <source-file src="src/ios/Hiku.m"/>
-    <header-file src="src/ios/Frameworks/HKSetupSDKFramework.framework/Headers/include/HKSetupSDK/HKSetupSDK.h"/>
     
     
   </platform>

@@ -1,5 +1,8 @@
 
 #import <Cordova/CDVPlugin.h>
+#import <HKSetupSDKFramework.framework/Headers/include/HKSetupSDK/HKSetupSDK.h>
+
+
 
 @interface Hiku : CDVPlugin
 
