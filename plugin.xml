@@ -33,6 +33,10 @@
 
   <!-- ios -->
   <platform name="ios">
+    <framework src="src/ios/Frameworks/BlinkUp.framework" custom="true" />
+    <framework src="src/ios/Frameworks/Bolts.framework" custom="true" />
+    <framework src="src/ios/Frameworks/FBSDKCoreKit.framework" custom="true" />
+    <framework src="src/ios/Frameworks/FBSDKShareKit.framework" custom="true" />
     <framework src="src/ios/Frameworks/HKSetupSDKFramework.framework" custom="true" />
     
     <preference name="appIdHikuApi" value="yourApiKeyHere" />
