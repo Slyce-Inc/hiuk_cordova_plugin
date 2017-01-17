@@ -1,6 +1,6 @@
 #import <Cordova/CDV.h>
+#import "hiku.h"
 
-#import "Hiku.h"
 
 
 @implementation Hiku
@@ -14,7 +14,7 @@
     
     _sdk = [[HKSetupSDK alloc] initWithAppId:apiId shared:shared email:email];
     _sdk.show_status_bar = [UIApplication sharedApplication].statusBarHidden;
-    //_sdk.delegate = self;}
+    _sdk.delegate = self;
 }
 
 - (void)logoutUser:(CDVInvokedUrlCommand*)command
@@ -60,6 +60,27 @@
 {
     [_sdk startSetup:[UIApplication sharedApplication].delegate.window.rootViewController withPresentationStyle:SDKHKPRESENTATION_MODAL];
 }
+
+
+- (void)applicationAuthorizationStatus:(BOOL)success sdk:(HKSetupSDK *)sdk{
+
+}
+- (void)userAuthenticationStatus:(BOOL)success sdk:(HKSetupSDK *)sdk{
+
+}
+- (void)deviceSetupStatus:(BOOL)success sdk:(HKSetupSDK *)sdk{
+
+}
+- (void)userCancelledSetup:(HKSetupSDK *)sdk{
+
+}
+- (void)userCompletedTutorial:(HKSetupSDK *)sdk{
+
+}
+- (void)userLoggedOut:(HKSetupSDK *)sdk{
+
+}
+
 
 
 
