@@ -7,19 +7,18 @@
 @implementation Hiku
 
 
-- (Hiku*)pluginInitialize
+- (void)pluginInitialize
 {
     NSString* apiId = [self.commandDelegate.settings objectForKey:[@"appIdHikuApi" lowercaseString]];
     NSString* shared = [self.commandDelegate.settings objectForKey:[@"emailHikuApi" lowercaseString]];
     NSString* email = [self.commandDelegate.settings objectForKey:[@"shareHikudApi" lowercaseString]];
     
     _sdk = [[HKSetupSDK alloc] initWithAppId:apiId shared:shared email:email];
-    //_sdk.show_status_bar = [UIApplication sharedApplication].statusBarHidden;
-    //_sdk.delegate = self;
+    _sdk.show_status_bar = [UIApplication sharedApplication].statusBarHidden;
+    //_sdk.delegate = self;}
 }
 
-
-- (void) logoutUser:(CDVInvokedUrlCommand*)command
+- (void)logoutUser:(CDVInvokedUrlCommand*)command
 {
     [_sdk logoutUser];
     
@@ -28,7 +27,7 @@
 
 }
 
-- (void) getApplicationTokenForUser:(CDVInvokedUrlCommand*)command
+- (void)getApplicationTokenForUser:(CDVInvokedUrlCommand*)command
 {
     NSString* applicationToken = nil;
     CDVPluginResult* pluginResult = nil;
@@ -41,9 +40,9 @@
 }
 
 
-- (void) launchTipsFlow:(CDVInvokedUrlCommand*)command
+- (void)launchTipsFlow:(CDVInvokedUrlCommand*)command
 {
-    [_sdk launchTipsFlow:self];
+    [_sdk launchTipsFlow:self.viewController];
 
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
