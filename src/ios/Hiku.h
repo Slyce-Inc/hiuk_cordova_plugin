@@ -8,6 +8,7 @@
 
 @property (strong, nonatomic) HKSetupSDK* sdk;
 @property (nonatomic) BOOL shouldHideStatusBar;
+@property (strong, nonatomic) CDVInvokedUrlCommand* delegateCommand;
 
 
 - (void)pluginInitialize;

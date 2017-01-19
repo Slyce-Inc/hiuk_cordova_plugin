@@ -20,10 +20,7 @@
 - (void)logoutUser:(CDVInvokedUrlCommand*)command
 {
     [_sdk logoutUser];
-    
-    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-
+    _delegateCommand = command;
 }
 
 - (void)getApplicationTokenForUser:(CDVInvokedUrlCommand*)command
@@ -63,10 +60,23 @@
 
 
 - (void)applicationAuthorizationStatus:(BOOL)success sdk:(HKSetupSDK *)sdk{
+    
 
 }
 - (void)userAuthenticationStatus:(BOOL)success sdk:(HKSetupSDK *)sdk{
-
+    
+    
+    if(_delegateCommand){
+        CDVPluginResult *pluginResult = nil;
+        if(success){
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        }else{
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+        }
+    
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:_delegateCommand.callbackId];
+        _delegateCommand = nil;
+    }
 }
 - (void)deviceSetupStatus:(BOOL)success sdk:(HKSetupSDK *)sdk{
 
