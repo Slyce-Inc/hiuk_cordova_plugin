@@ -4,72 +4,85 @@
     id="hiku-cordova-plugin"
     version="1.0.0">
 
-  <name>Hiku setup ap</name>
+    <name>Hiku setup ap</name>
 
-  <description>
-    This plugin allows you to set up and register hiku device.
-  </description>
+    <description>
+        This plugin allows you to set up and register hiku device.
+    </description>
 
-  <author>Bartosz Urbanski</author>
+    <author>Bartosz Urbanski</author>
 
-  <license></license>
+    <license></license>
 
-  <keywords>Hiku</keywords>
+    <keywords>Hiku</keywords>
 
-  <repo>https://github.com/barteku/hiku-cordova-plugin</repo>
+    <repo>https://github.com/barteku/hiku-cordova-plugin</repo>
 
-  <issue>https://github.com/barteku/hiku-cordova-plugin/issues</issue>
+    <issue>https://github.com/barteku/hiku-cordova-plugin/issues</issue>
 
-  <engines>
-    <engine name="cordova" version=">=5.0.0"/>
-  </engines>
+    <engines>
+        <engine name="cordova" version=">=5.0.0"/>
+    </engines>
 
-  <js-module src="www/Hiku.js" name="Hiku">
-    <clobbers target="Hiku"/>
-  </js-module>
+    <js-module src="www/Hiku.js" name="Hiku">
+        <clobbers target="Hiku"/>
+    </js-module>
 
-<!--   <js-module src="test/tests.js" name="tests">
-  </js-module> -->
+    <!--   <js-module src="test/tests.js" name="tests">
+    </js-module> -->
 
-  <!-- ios -->
-  <platform name="ios">
-    <framework src="src/ios/Frameworks/HKSetupSDKFramework.framework" custom="true" />
+    <!-- ios -->
+    <platform name="ios">
+        <source-file src="src/ios/Frameworks/AFNetworking/AFNetworking/AFHTTPSessionManager.m"/>
+        <header-file src="src/ios/Frameworks/AFNetworking/AFNetworking/AFHTTPSessionManager.h"/>
+        <source-file src="src/ios/Frameworks/AFNetworking/AFNetworking/AFURLRequestSerialization.m"/>
+        <header-file src="src/ios/Frameworks/AFNetworking/AFNetworking/AFURLRequestSerialization.h"/>
+        <source-file src="src/ios/Frameworks/TTTAttributedLabel/TTTAttributedLabel/TTTAttributedLabel.m" />
+        <header-file src="src/ios/Frameworks/TTTAttributedLabel/TTTAttributedLabel/TTTAttributedLabel.h" />
+        <source-file src="src/ios/Frameworks/AFNetworking/AFNetworking/AFNetworkReachabilityManager.m" />
+        <header-file src="src/ios/Frameworks/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h" />
+        <source-file src="src/ios/Frameworks/Mixpanel/Mixpanel/Mixpanel.m" />
+        <header-file src="src/ios/Frameworks/Mixpanel/Mixpanel/Mixpanel.h" />
+        
+       
+        <framework src="src/ios/Frameworks/HKSetupSDKFramework.framework" custom="true" />
     
-    <preference name="appIdHikuApi" value="yourApiKeyHere" />
-    <preference name="emailHikuApi" value="yourApiKeyHere" />
-    <preference name="shareHikudApi" value="yourApiKeyHere" />
+    
+        <preference name="appIdHikuApi" value="yourApiKeyHere" />
+        <preference name="emailHikuApi" value="yourApiKeyHere" />
+        <preference name="shareHikudApi" value="yourApiKeyHere" />
       
-    <config-file target="config.xml" parent="/*">
-      <feature name="Hiku">
-        <param name="ios-package" value="Hiku"/>
-        <param name="onload" value="true"/>
-      </feature>
-    </config-file>
+        <config-file target="config.xml" parent="/*">
+            <feature name="Hiku">
+                <param name="ios-package" value="Hiku"/>
+                <param name="onload" value="true"/>
+            </feature>
+        </config-file>
     
-    <header-file src="src/ios/Hiku.h"/>
-    <source-file src="src/ios/Hiku.m"/>
+        <header-file src="src/ios/Hiku.h"/>
+        <source-file src="src/ios/Hiku.m"/>
     
     
-  </platform>
+    </platform>
 
-  <!-- android 
-  <platform name="android">
-    <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="Calendar">
-        <param name="android-package" value="nl.xservices.plugins.Calendar"/>
-      </feature>
-    </config-file>
-    <config-file target="AndroidManifest.xml" parent="/manifest">
-      <uses-permission android:name="android.permission.READ_CALENDAR"/>
-      <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
-    </config-file>
-    <source-file src="src/android/nl/xservices/plugins/Calendar.java" target-dir="src/nl/xservices/plugins"/>
-    <source-file src="src/android/nl/xservices/plugins/accessor/AbstractCalendarAccessor.java"
-                 target-dir="src/nl/xservices/plugins/accessor"/>
-    <source-file src="src/android/nl/xservices/plugins/accessor/CalendarProviderAccessor.java"
-                 target-dir="src/nl/xservices/plugins/accessor"/>
-    <source-file src="src/android/nl/xservices/plugins/accessor/LegacyCalendarAccessor.java"
-                 target-dir="src/nl/xservices/plugins/accessor"/>
-    <dependency id="cordova-plugin-compat" version="^1.0.0" />
-  </platform>-->
+    <!-- android 
+    <platform name="android">
+      <config-file target="res/xml/config.xml" parent="/*">
+        <feature name="Calendar">
+          <param name="android-package" value="nl.xservices.plugins.Calendar"/>
+        </feature>
+      </config-file>
+      <config-file target="AndroidManifest.xml" parent="/manifest">
+        <uses-permission android:name="android.permission.READ_CALENDAR"/>
+        <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+      </config-file>
+      <source-file src="src/android/nl/xservices/plugins/Calendar.java" target-dir="src/nl/xservices/plugins"/>
+      <source-file src="src/android/nl/xservices/plugins/accessor/AbstractCalendarAccessor.java"
+                   target-dir="src/nl/xservices/plugins/accessor"/>
+      <source-file src="src/android/nl/xservices/plugins/accessor/CalendarProviderAccessor.java"
+                   target-dir="src/nl/xservices/plugins/accessor"/>
+      <source-file src="src/android/nl/xservices/plugins/accessor/LegacyCalendarAccessor.java"
+                   target-dir="src/nl/xservices/plugins/accessor"/>
+      <dependency id="cordova-plugin-compat" version="^1.0.0" />
+    </platform>-->
 </plugin>
