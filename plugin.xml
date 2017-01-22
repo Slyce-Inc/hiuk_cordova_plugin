@@ -47,8 +47,8 @@
         <pod id="UICKeyChainStore" />
         <pod id="Mixpanel" />
         
-        <preference name="appIdHikuApi" />
-        <preference name="shareHikudApi" />
+        <preference name="APPIDHIKUAPI" />
+        <preference name="SHAREHIKUDAPI" />
       
         <config-file target="config.xml" parent="/*">
             <feature name="Hiku">

@@ -6,7 +6,7 @@
 
 @interface Hiku : CDVPlugin <HKSetupDelegate>
 
-@property (nonatomic) NSString* appiId;
+@property (nonatomic) NSString* appId;
 @property (nonatomic) NSString* appSecret;
 
 @property (strong, nonatomic) HKSetupSDK* sdk;
