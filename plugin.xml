@@ -20,6 +20,8 @@
 
     <issue>https://github.com/barteku/hiku-cordova-plugin/issues</issue>
 
+    <dependency id="cordova-plugin-cocoapod-support"/>
+
     <engines>
         <engine name="cordova" version=">=5.0.0"/>
     </engines>
@@ -33,21 +35,18 @@
 
     <!-- ios -->
     <platform name="ios">
-        <source-file src="src/ios/Frameworks/AFNetworking/AFNetworking/AFHTTPSessionManager.m"/>
-        <header-file src="src/ios/Frameworks/AFNetworking/AFNetworking/AFHTTPSessionManager.h"/>
-        <source-file src="src/ios/Frameworks/AFNetworking/AFNetworking/AFURLRequestSerialization.m"/>
-        <header-file src="src/ios/Frameworks/AFNetworking/AFNetworking/AFURLRequestSerialization.h"/>
-        <source-file src="src/ios/Frameworks/TTTAttributedLabel/TTTAttributedLabel/TTTAttributedLabel.m" />
-        <header-file src="src/ios/Frameworks/TTTAttributedLabel/TTTAttributedLabel/TTTAttributedLabel.h" />
-        <source-file src="src/ios/Frameworks/AFNetworking/AFNetworking/AFNetworkReachabilityManager.m" />
-        <header-file src="src/ios/Frameworks/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h" />
-        <source-file src="src/ios/Frameworks/Mixpanel/Mixpanel/Mixpanel.m" />
-        <header-file src="src/ios/Frameworks/Mixpanel/Mixpanel/Mixpanel.h" />
         
-       
+        <framework src="src/ios/Frameworks/BlinkUp.embeddedframework/BlinkUp.framework" custom="true" />
         <framework src="src/ios/Frameworks/HKSetupSDKFramework.framework" custom="true" />
-    
-    
+        
+        <!-- optionally set minimum ios version and enable use_frameworks! -->
+        <pods-config ios-min-version="10.2" use-frameworks="true"/>
+        <pod id="TTTAttributedLabel" />
+        <pod id="libPusher" />
+        <pod id="AFNetworking" />
+        <pod id="UICKeyChainStore" />
+        <pod id="Mixpanel" />
+        
         <preference name="appIdHikuApi" value="yourApiKeyHere" />
         <preference name="emailHikuApi" value="yourApiKeyHere" />
         <preference name="shareHikudApi" value="yourApiKeyHere" />
