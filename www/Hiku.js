@@ -2,7 +2,7 @@
 
 var exec = require('cordova/exec');
 
-var Hiku = function() {
+function Hiku() {
 	this.serviceName = "Hiku";
 };
 
@@ -39,5 +39,5 @@ Hiku.prototype.launchTipsFlow = function(successCallback, failureCallback){
 
 
 
-module.exports = Hiku;
+module.exports = new Hiku();
 

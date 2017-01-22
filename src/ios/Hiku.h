@@ -24,7 +24,7 @@
 
 - (void)initWithAppId:(CDVInvokedUrlCommand*)command;
 
-- (void)initWithParameters:(CDVInvokedUrlCommand*)command
+- (void)initWithParameters:(CDVInvokedUrlCommand*)command;
 
 
 @end
