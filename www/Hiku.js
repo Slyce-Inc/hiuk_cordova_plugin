@@ -12,8 +12,8 @@ Hiku.prototype.initWithParameters = function(successCallback, failureCallback, p
 };
 
 
-Hiku.prototype.initWithAppId = function(successCallback, failureCallback, appId){
-    exec(successCallback, failureCallback, this.serviceName, "initWithAppId", [appId]);
+Hiku.prototype.initWithAppId = function(successCallback, failureCallback, email){
+    exec(successCallback, failureCallback, this.serviceName, "initWithAppId", [email]);
 };
 
 Hiku.prototype.startSetup = function(successCallback, failureCallback){

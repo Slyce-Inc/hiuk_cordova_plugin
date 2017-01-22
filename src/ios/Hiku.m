@@ -6,11 +6,6 @@
 @implementation Hiku
 
 
-- (void)pluginInitialize
-{
-    
-}
-
 
 - (void)initWithAppId:(CDVInvokedUrlCommand*)command
 {
@@ -26,6 +21,21 @@
 
 }
 
+
+- (void)initWithParameters:(CDVInvokedUrlCommand*)command
+{
+    //NSDictionary* parameters = 
+
+}
+
+- (void) loginUserWithEmail:(CDVInvokedUrlCommand*)command
+{
+    NSDictionary* options = [command.arguments objectAtIndex:0];
+    NSString* email      = [options objectForKey:@"email"];
+    NSString* password   = [options objectForKey:@"password"];
+
+    [_sdk loginUserWithEmail:email password:password];
+}
 
 - (void)logoutUser:(CDVInvokedUrlCommand*)command
 {
@@ -52,15 +62,6 @@
 
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-}
-
-- (void) loginUserWithEmail:(CDVInvokedUrlCommand*)command
-{
-    NSDictionary* options = [command.arguments objectAtIndex:0];
-    NSString* email      = [options objectForKey:@"email"];
-    NSString* password   = [options objectForKey:@"password"];
-
-    [_sdk loginUserWithEmail:email password:password];
 }
 
 - (void) startSetup:(CDVInvokedUrlCommand*)command

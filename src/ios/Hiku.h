@@ -12,8 +12,6 @@
 @property (strong, nonatomic) CDVInvokedUrlCommand* delegateCommand;
 
 
-- (void)pluginInitialize;
-
 - (void)logoutUser:(CDVInvokedUrlCommand*)command;
 
 - (void)getApplicationTokenForUser:(CDVInvokedUrlCommand*)command;
@@ -25,6 +23,8 @@
 - (void)startSetup:(CDVInvokedUrlCommand*)command;
 
 - (void)initWithAppId:(CDVInvokedUrlCommand*)command;
+
+- (void)initWithParameters:(CDVInvokedUrlCommand*)command
 
 
 @end
