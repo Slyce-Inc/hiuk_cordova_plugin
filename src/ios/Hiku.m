@@ -6,19 +6,21 @@
 @implementation Hiku
 
 
+- (void)pluginInitialize
+{
+    NSString* _appiId = [self.commandDelegate.settings objectForKey:[@"appIdHikuApi" lowercaseString]];
+    NSString* _appSecret = [self.commandDelegate.settings objectForKey:[@"emailHikuApi" lowercaseString]];
+
+
+
 
 - (void)initWithAppId:(CDVInvokedUrlCommand*)command
 {
-    NSDictionary* options = [command.arguments objectAtIndex:0];
-
-    NSString* apiId = [self.commandDelegate.settings objectForKey:[@"appIdHikuApi" lowercaseString]];
-    NSString* shared = [self.commandDelegate.settings objectForKey:[@"shareHikudApi" lowercaseString]];
     NSString* email      = [options objectForKey:@"email"];
     
-    _sdk = [[HKSetupSDK alloc] initWithAppId:apiId shared:shared email:email];
+    _sdk = [[HKSetupSDK alloc] initWithAppId:_appId shared:_appShared email:email];
     _sdk.show_status_bar = [UIApplication sharedApplication].statusBarHidden;
     _sdk.delegate = self;
-
 }
 
 

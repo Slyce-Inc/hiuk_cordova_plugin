@@ -6,11 +6,16 @@
 
 @interface Hiku : CDVPlugin <HKSetupDelegate>
 
+@property (nonatomic) NSString* appiId;
+@property (nonatomic) NSString* appSecret;
+
 @property (strong, nonatomic) HKSetupSDK* sdk;
 @property (nonatomic) BOOL shouldHideStatusBar;
 
 @property (strong, nonatomic) CDVInvokedUrlCommand* delegateCommand;
 
+
+- (void)pluginInitialize;
 
 - (void)logoutUser:(CDVInvokedUrlCommand*)command;
 

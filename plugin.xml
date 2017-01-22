@@ -47,19 +47,19 @@
         <pod id="UICKeyChainStore" />
         <pod id="Mixpanel" />
         
-        <preference name="appIdHikuApi" value="yourApiKeyHere" />
-        <preference name="shareHikudApi" value="yourApiKeyHere" />
+        <preference name="appIdHikuApi" />
+        <preference name="shareHikudApi" />
       
         <config-file target="config.xml" parent="/*">
             <feature name="Hiku">
                 <param name="ios-package" value="Hiku"/>
-                <!--param name="onload" value="true"/-->
+                <param name="onload" value="true"/>
             </feature>
         </config-file>
     
         <header-file src="src/ios/Hiku.h"/>
         <source-file src="src/ios/Hiku.m"/>
-    
+        
     
     </platform>
 
