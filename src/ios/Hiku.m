@@ -8,14 +8,24 @@
 
 - (void)pluginInitialize
 {
+    
+}
+
+
+- (void)initWithAppId:(CDVInvokedUrlCommand*)command
+{
+    NSDictionary* options = [command.arguments objectAtIndex:0];
+
     NSString* apiId = [self.commandDelegate.settings objectForKey:[@"appIdHikuApi" lowercaseString]];
-    NSString* shared = [self.commandDelegate.settings objectForKey:[@"emailHikuApi" lowercaseString]];
-    NSString* email = [self.commandDelegate.settings objectForKey:[@"shareHikudApi" lowercaseString]];
+    NSString* shared = [self.commandDelegate.settings objectForKey:[@"shareHikudApi" lowercaseString]];
+    NSString* email      = [options objectForKey:@"email"];
     
     _sdk = [[HKSetupSDK alloc] initWithAppId:apiId shared:shared email:email];
     _sdk.show_status_bar = [UIApplication sharedApplication].statusBarHidden;
     _sdk.delegate = self;
+
 }
+
 
 - (void)logoutUser:(CDVInvokedUrlCommand*)command
 {

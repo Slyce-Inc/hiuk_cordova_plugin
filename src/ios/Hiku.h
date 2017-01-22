@@ -8,6 +8,7 @@
 
 @property (strong, nonatomic) HKSetupSDK* sdk;
 @property (nonatomic) BOOL shouldHideStatusBar;
+
 @property (strong, nonatomic) CDVInvokedUrlCommand* delegateCommand;
 
 
@@ -23,6 +24,7 @@
 
 - (void)startSetup:(CDVInvokedUrlCommand*)command;
 
+- (void)initWithAppId:(CDVInvokedUrlCommand*)command;
 
 
 @end
