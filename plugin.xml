@@ -20,7 +20,7 @@
 
     <issue>https://github.com/barteku/hiku-cordova-plugin/issues</issue>
 
-    <dependency id="cordova-plugin-cocoapod-support"/>
+    <dependency id="cordova-plugin-cocoapod-support" url="https://github.com/barteku/cordova-plugin-cocoapods-support.git"/>
 
     <engines>
         <engine name="cordova" version=">=5.0.0"/>
