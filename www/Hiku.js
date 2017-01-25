@@ -12,8 +12,8 @@ Hiku.prototype.initWithParameters = function(successCallback, failureCallback, p
 };
 
 
-Hiku.prototype.initWithAppId = function(successCallback, failureCallback, email){
-    exec(successCallback, failureCallback, this.serviceName, "initWithAppId", [email]);
+Hiku.prototype.initWithAppId = function(successCallback, failureCallback, parameters){
+    exec(successCallback, failureCallback, this.serviceName, "initWithAppId", [parameters]);
 };
 
 Hiku.prototype.startSetup = function(successCallback, failureCallback){
@@ -26,10 +26,6 @@ Hiku.prototype.loginUserWithEmail = function(successCallback, failureCallback, e
 
 Hiku.prototype.logoutUser = function(successCallback, failureCallback){
     exec(successCallback, failureCallback, this.serviceName, "logoutUser");
-};
-
-Hiku.prototype.getApplicationTokenForUser = function(successCallback, failureCallback){
-    exec(successCallback, failureCallback, this.serviceName, "getApplicationTokenForUser");
 };
 
 Hiku.prototype.launchTipsFlow = function(successCallback, failureCallback){

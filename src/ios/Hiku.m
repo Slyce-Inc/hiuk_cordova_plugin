@@ -6,28 +6,44 @@
 @implementation Hiku
 
 
-- (void)pluginInitialize
-{
-    _appId = [self.commandDelegate.settings objectForKey:[@"appIdHikuApi" lowercaseString]];
-    _appSecret = [self.commandDelegate.settings objectForKey:[@"sharedHikuApi" lowercaseString]];
-}
-
-
-
 - (void)initWithAppId:(CDVInvokedUrlCommand*)command
 {
-    NSString* email      = [command.arguments objectAtIndex:0];
+    NSDictionary* options = [command.arguments objectAtIndex:0];
+    NSString* email      = [options objectForKey:@"email"];
+    NSString* appId      = [options objectForKey:@"appId"];
+    NSString* appShared      = [options objectForKey:@"appShared"];
     
-    _sdk = [[HKSetupSDK alloc] initWithAppId:_appId shared:_appSecret email:email];
+    _sdk = [[HKSetupSDK alloc] initWithAppId:appId shared:appShared email:email];
     _sdk.show_status_bar = [UIApplication sharedApplication].statusBarHidden;
     _sdk.delegate = self;
+    
+    _callbackId = command.callbackId;
 }
 
 
 - (void)initWithParameters:(CDVInvokedUrlCommand*)command
 {
-    //NSDictionary* parameters = 
+    NSDictionary* options = [command.arguments objectAtIndex:0];
+    NSString* email      = [options objectForKey:@"email"];
+    NSString* appId      = [options objectForKey:@"appId"];
+    NSString* appShared      = [options objectForKey:@"appShared"];
 
+    // sdkParameters dictionary should have the following format:
+    //     @{
+    //         @"app_id" : <NSString>, // mandatory
+    //         @"shared_secret" : <NSString>, // mandatory
+    //         @"email" : <NSString>, // optional, defaulted to @""
+    //         @"partner_logo" : <UIImage>, // optional, defaulted to nil
+    //         @"show_status_bar" : <BOOL> // optional, defaulted to YES
+    //      }
+    NSDictionary* parameters = @{
+         @"app_id" : appId, // mandatory
+         @"shared_secret" : appShared, // mandatory
+         @"email" : email
+    };
+    
+    _sdk = [[HKSetupSDK alloc] initWithParameters:parameters];
+    _sdk.delegate = self;
 }
 
 - (void) loginUserWithEmail:(CDVInvokedUrlCommand*)command
@@ -35,76 +51,109 @@
     NSDictionary* options = [command.arguments objectAtIndex:0];
     NSString* email      = [options objectForKey:@"email"];
     NSString* password   = [options objectForKey:@"password"];
-
+    _callbackId = command.callbackId;
+    
+    
     [_sdk loginUserWithEmail:email password:password];
 }
 
 - (void)logoutUser:(CDVInvokedUrlCommand*)command
 {
     [_sdk logoutUser];
-    _delegateCommand = command;
+    _callbackId = command.callbackId;
 }
-
-- (void)getApplicationTokenForUser:(CDVInvokedUrlCommand*)command
-{
-    NSString* applicationToken = nil;
-    CDVPluginResult* pluginResult = nil;
-
-    applicationToken = [_sdk getApplicationTokenForUser];
-    
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:applicationToken];
-
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-}
-
 
 - (void)launchTipsFlow:(CDVInvokedUrlCommand*)command
 {
+    _callbackId = command.callbackId;
     [_sdk launchTipsFlow:self.viewController];
-
-    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void) startSetup:(CDVInvokedUrlCommand*)command
 {
-    [_sdk startSetup:[UIApplication sharedApplication].delegate.window.rootViewController withPresentationStyle:SDKHKPRESENTATION_MODAL];
+    _callbackId = command.callbackId;
+    [_sdk startSetup:self.viewController withPresentationStyle:SDKHKPRESENTATION_MODAL];
 }
+
 
 
 - (void)applicationAuthorizationStatus:(BOOL)success sdk:(HKSetupSDK *)sdk{
-    
-
-}
-- (void)userAuthenticationStatus:(BOOL)success sdk:(HKSetupSDK *)sdk{
-    
-    
-    if(_delegateCommand){
-        CDVPluginResult *pluginResult = nil;
-        if(success){
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-        }else{
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
-        }
-    
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:_delegateCommand.callbackId];
-        _delegateCommand = nil;
+    NSString *token = nil;
+    if(success){
+        token = [sdk getApplicationTokenForUser];
     }
+    
+    NSDictionary *event = @{
+        @"success": [NSNumber numberWithBool: success],
+        @"message": [NSString stringWithFormat:@"Application authorization status: %@", success ? @"Success Authorization" : @"Failed"],
+        @"token": token
+    };
+    
+    [self sendEventToJavaScript: event];
+}
+
+- (void)userAuthenticationStatus:(BOOL)success sdk:(HKSetupSDK *)sdk{
+    NSString *token = nil;
+    if(success){
+        token = [sdk getApplicationTokenForUser];
+    }
+    
+    NSDictionary *event = @{
+        @"success": [NSNumber numberWithBool: success],
+        @"message": [NSString stringWithFormat:@"User authentication status: %@", success ? @"Success" : @"Failed"],
+        @"token": token
+    };
+    
+    [self sendEventToJavaScript: event];
 }
 - (void)deviceSetupStatus:(BOOL)success sdk:(HKSetupSDK *)sdk{
-
+    NSDictionary *event = @{
+        @"success": [NSNumber numberWithBool: success],
+        @"message": [NSString stringWithFormat:@"Device setup status: %@",success ? @"Success" : @"Failed"]
+    };
+    
+    [self sendEventToJavaScript: event];
 }
 - (void)userCancelledSetup:(HKSetupSDK *)sdk{
-
+    NSDictionary *event = @{
+        @"success": [NSNumber numberWithBool: YES],
+        @"message": @"User cancelled setup"
+    };
+    
+    [self sendEventToJavaScript: event];
 }
 - (void)userCompletedTutorial:(HKSetupSDK *)sdk{
-
+    NSDictionary *event = @{
+       @"success": [NSNumber numberWithBool: YES],
+       @"message": @"User completed the tutorial"
+    };
+    
+    [self sendEventToJavaScript: event];
 }
 - (void)userLoggedOut:(HKSetupSDK *)sdk{
-
+    NSDictionary *event = @{
+        @"success": [NSNumber numberWithBool: YES],
+        @"message": @"User logged out"
+    };
+    
+    [self sendEventToJavaScript: event];
 }
 
 
+
+- (void) sendEventToJavaScript: (NSDictionary*) event
+{
+    CDVPluginResult *pluginResult = nil;
+    if([event objectForKey:@"success"]){
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary: event];
+    }else{
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary: event];
+    }
+    
+    // Send result.
+    [pluginResult setKeepCallback: [NSNumber numberWithBool: YES]];
+    [self.commandDelegate sendPluginResult: pluginResult callbackId: _callbackId];
+}
 
 
 

@@ -48,9 +48,6 @@
         <pod id="UICKeyChainStore" />
         <pod id="Mixpanel" />
         
-        <preference name="APPIDHIKUAPI" />
-        <preference name="SHAREHIKUDAPI" />
-      
         <config-file target="config.xml" parent="/*">
             <feature name="Hiku">
                 <param name="ios-package" value="Hiku"/>
