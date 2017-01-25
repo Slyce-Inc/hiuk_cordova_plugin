@@ -37,7 +37,8 @@
     <platform name="ios">
         
         <framework src="src/ios/Frameworks/BlinkUp.embeddedframework/BlinkUp.framework" custom="true" />
-        <framework src="src/ios/Frameworks/HKSetupSDKFramework.framework" custom="true" />
+        <framework src="src/ios/Frameworks/HKSetupSDKFramework.framework" custom="true" /> 
+        <resource-file src="src/ios/Frameworks/HKSetupSDKFramework.framework/Versions/Current/Headers/include/HKSetupSDK/HKSetupSDKResources.bundle" />
         
         <!-- optionally set minimum ios version and enable use_frameworks! -->
         <pods-config ios-min-version="10.2" use-frameworks="true"/>
