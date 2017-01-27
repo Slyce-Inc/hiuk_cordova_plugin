@@ -38,10 +38,13 @@
     //      }
     NSDictionary* parameters = @{
          @"app_id" : appId, // mandatory
-         @"shared_secret" : appShared, // mandatory
-         @"email" : email
+         @"shared_secret" : appShared // mandatory
     };
+    if(email){
+        [parameters setValue:email forKey:@"email"];
+    }
     
+
     _sdk = [[HKSetupSDK alloc] initWithParameters:parameters];
     _sdk.delegate = self;
 }
