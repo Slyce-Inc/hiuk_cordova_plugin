@@ -6,7 +6,15 @@ function Hiku() {
 	this.serviceName = "Hiku";
 };
 
-
+/**
+ * 
+ * @param function successCallback
+ * @param function failureCallback
+ * @param object parameters
+ * 
+ * 
+ * 
+ */
 Hiku.prototype.initWithParameters = function(successCallback, failureCallback, parameters){
     exec(successCallback, failureCallback, this.serviceName, "initWithParameters", [parameters]);
 };
