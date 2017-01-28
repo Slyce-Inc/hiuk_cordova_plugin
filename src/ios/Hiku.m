@@ -31,9 +31,10 @@
     NSString* show_status_bar      = [options objectForKey:@"showStatusBar"];
     
 
-    NSMutableDictionary* parameters = [[NSMutableDictionary alloc]init];
-    [parameters setObject:appId forKey:@"app_id"];
-    [parameters setObject:appSecret forKey:@"shared_secret"];
+    NSMutableDictionary* parameters = [[NSMutableDictionary alloc]initWithDictionary:@{
+        @"app_id" : appId, // mandatory
+        @"shared_secret" : appSecret // mandatory
+    }];
     
     if(email){
         [parameters setObject:email forKey:@"email"];
