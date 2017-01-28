@@ -11,9 +11,9 @@
     NSDictionary* options = [command.arguments objectAtIndex:0];
     NSString* email      = [options objectForKey:@"email"];
     NSString* appId      = [options objectForKey:@"appId"];
-    NSString* appShared      = [options objectForKey:@"appShared"];
+    NSString* appSecret      = [options objectForKey:@"appSecret"];
     
-    _sdk = [[HKSetupSDK alloc] initWithAppId:appId shared:appShared email:email];
+    _sdk = [[HKSetupSDK alloc] initWithAppId:appId shared:appSecret email:email];
     _sdk.show_status_bar = [UIApplication sharedApplication].statusBarHidden;
     _sdk.delegate = self;
     
@@ -26,22 +26,14 @@
     NSDictionary* options = [command.arguments objectAtIndex:0];
     NSString* email      = [options objectForKey:@"email"];
     NSString* appId      = [options objectForKey:@"appId"];
-    NSString* appShared      = [options objectForKey:@"appShared"];
-    NSString* partner_logo      = [options objectForKey:@"partner_logo"];
-    NSString* show_status_bar      = [options objectForKey:@"show_status_bar"];
+    NSString* appSecret      = [options objectForKey:@"appSecret"];
+    NSString* partner_logo      = [options objectForKey:@"partnerLogo"];
+    NSString* show_status_bar      = [options objectForKey:@"showStatusBar"];
     
 
-    // sdkParameters dictionary should have the following format:
-    //     @{
-    //         @"app_id" : <NSString>, // mandatory
-    //         @"shared_secret" : <NSString>, // mandatory
-    //         @"email" : <NSString>, // optional, defaulted to @""
-    //         @"partner_logo" : <UIImage>, // optional, defaulted to nil
-    //         @"show_status_bar" : <BOOL> // optional, defaulted to YES
-    //      }
     NSMutableDictionary* parameters = [[NSMutableDictionary alloc]init];
     [parameters setObject:appId forKey:@"app_id"];
-    [parameters setObject:appShared forKey:@"shared_secret"];
+    [parameters setObject:appSecret forKey:@"shared_secret"];
     
     if(email){
         [parameters setObject:email forKey:@"email"];
@@ -54,8 +46,7 @@
         [parameters setObject:image forKey:@"partner_logo"];
     }
     //if(show_status_bar){
-    //    int v = [show_status_bar intValue];
-    //    [parameters setObject: v forKey:@"show_status_bar"];
+    //    [parameters setObject: [NSNumber numberWithBool: YES] forKey:@"show_status_bar"];
     //}
 
     
@@ -110,8 +101,6 @@
 }
 
 - (void)userAuthenticationStatus:(BOOL)success sdk:(HKSetupSDK *)sdk{
-    NSString *token = nil;
-    
     NSDictionary *event = @{
         @"success": [NSNumber numberWithBool: success],
         @"message": [NSString stringWithFormat:@"User authentication status: %@", success ? @"Success" : @"Failed"]
