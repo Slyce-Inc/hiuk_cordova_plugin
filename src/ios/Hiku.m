@@ -94,7 +94,7 @@
     NSDictionary *event = @{
         @"success": [NSNumber numberWithBool: success],
         @"message": [NSString stringWithFormat:@"Application authorization status: %@", success ? @"Success Authorization" : @"Failed"],
-        @"token": token
+        @"token": token ? token : @""
     };
     
     [self sendEventToJavaScript: event];
