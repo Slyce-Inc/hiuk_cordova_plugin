@@ -1,6 +1,6 @@
 # hiku-cordova-plugin
 
-Cordova iOS plugin for HikuSDK
+Cordova iOS plugin for HikuSetupSDK
 
 
 1. [Description](https://github.com/barteku/hiku-cordova-plugin.git#1-description)
@@ -11,7 +11,7 @@ Cordova iOS plugin for HikuSDK
 
 ## 1. Description
 
-This plugins allows you to make use of HikuHKSDK
+This plugins allows you to make use of HikuSetupSDK
 
 * Works with Cordova >= 5.0.0
 
