@@ -69,7 +69,7 @@ Example 1 - basic
 ````    
     
 Example 2 - advanced options
-```
+```js
     var params = {
         appId: 'XXX', 
         addSecret: 'XXXX', 
