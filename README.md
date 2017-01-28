@@ -18,9 +18,10 @@ This plugins allows you to make use of HikuSetupSDK
 ### iOS specifics
 * Supported methods: `initWithParameters`, `initWithAppId`, `startSetup`, `loginUserWithEmail`,  `logoutUser`, `launchTipsFlow`
 * initWithParameters, initWithAppId initiates SDK
-* startSetup allows to create account
-* launchTipsFlow fires tips screen
+* startSetup allows to create a user account
 * All methods return data in callbacks if needed
+* Plugin using some libraries from cocoapods with cordova-plugin-cocoapod-support
+
  
 
 
@@ -31,6 +32,13 @@ Latest github version
 ```
 cordova plugin add https://github.com/barteku/hiku-cordova-plugin.git
 ``````
+After installing plugin, build required
+```
+cordova build ios
+``````
+Build may fail for some reason, please try xcode build when occurs.
+
+
 
 
 ## 3. Usage
