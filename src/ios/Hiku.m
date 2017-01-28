@@ -27,6 +27,9 @@
     NSString* email      = [options objectForKey:@"email"];
     NSString* appId      = [options objectForKey:@"appId"];
     NSString* appShared      = [options objectForKey:@"appShared"];
+    NSString* partner_logo      = [options objectForKey:@"partner_logo"];
+    NSString* show_status_bar      = [options objectForKey:@"show_status_bar"];
+    
 
     // sdkParameters dictionary should have the following format:
     //     @{
@@ -36,15 +39,26 @@
     //         @"partner_logo" : <UIImage>, // optional, defaulted to nil
     //         @"show_status_bar" : <BOOL> // optional, defaulted to YES
     //      }
-    NSDictionary* parameters = @{
-         @"app_id" : appId, // mandatory
-         @"shared_secret" : appShared // mandatory
-    };
-    if(email){
-        [parameters setValue:email forKey:@"email"];
-    }
+    NSMutableDictionary* parameters = [[NSMutableDictionary alloc]init];
+    [parameters setObject:appId forKey:@"app_id"];
+    [parameters setObject:appShared forKey:@"shared_secret"];
     
+    if(email){
+        [parameters setObject:email forKey:@"email"];
+    }
+    if(partner_logo){
+        NSURL *url = [NSURL URLWithString:partner_logo];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [UIImage imageWithData:data];
+        
+        [parameters setObject:image forKey:@"partner_logo"];
+    }
+    //if(show_status_bar){
+    //    int v = [show_status_bar intValue];
+    //    [parameters setObject: v forKey:@"show_status_bar"];
+    //}
 
+    
     _sdk = [[HKSetupSDK alloc] initWithParameters:parameters];
     _sdk.delegate = self;
 }
@@ -97,14 +111,10 @@
 
 - (void)userAuthenticationStatus:(BOOL)success sdk:(HKSetupSDK *)sdk{
     NSString *token = nil;
-    if(success){
-        token = [sdk getApplicationTokenForUser];
-    }
     
     NSDictionary *event = @{
         @"success": [NSNumber numberWithBool: success],
-        @"message": [NSString stringWithFormat:@"User authentication status: %@", success ? @"Success" : @"Failed"],
-        @"token": token
+        @"message": [NSString stringWithFormat:@"User authentication status: %@", success ? @"Success" : @"Failed"]
     };
     
     [self sendEventToJavaScript: event];

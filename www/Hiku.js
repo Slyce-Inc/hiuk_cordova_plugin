@@ -29,7 +29,7 @@ Hiku.prototype.startSetup = function(successCallback, failureCallback){
 };
 
 Hiku.prototype.loginUserWithEmail = function(successCallback, failureCallback, email, password){
-    exec(successCallback, failureCallback, this.serviceName, "loginUserWithEmail", [email, password]);
+    exec(successCallback, failureCallback, this.serviceName, "loginUserWithEmail", {'email': email, 'password':password});
 };
 
 Hiku.prototype.logoutUser = function(successCallback, failureCallback){
