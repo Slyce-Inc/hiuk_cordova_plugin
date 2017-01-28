@@ -16,9 +16,9 @@
 
     <keywords>Hiku</keywords>
 
-    <repo>https://github.com/barteku/hiku-cordova-plugin</repo>
+    <repo>https://github.com/hikuinc/hiuk_cordova_plugin</repo>
 
-    <issue>https://github.com/barteku/hiku-cordova-plugin/issues</issue>
+    <issue>https://github.com/hikuinc/hiuk_cordova_plugin/issues</issue>
 
     <dependency id="cordova-plugin-cocoapod-support" url="https://github.com/barteku/cordova-plugin-cocoapods-support.git"/>
 

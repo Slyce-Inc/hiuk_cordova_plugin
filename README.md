@@ -30,7 +30,7 @@ This plugins allows you to make use of HikuSetupSDK
 ### Automatically
 Latest github version
 ```
-cordova plugin add https://github.com/barteku/hiku-cordova-plugin.git
+cordova plugin add https://github.com/hikuinc/hiuk_cordova_plugin.git
 ``````
 After installing plugin, build required
 ```
