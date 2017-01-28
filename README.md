@@ -57,6 +57,8 @@ launchTipsFlow                      | interactive            | yes |
 
 
 Basic operations, you'll want to copy-paste this for testing purposes:
+
+Example 1 - basic
 ```js
 
     var success = function(d){console.log(d)};
@@ -64,8 +66,18 @@ Basic operations, you'll want to copy-paste this for testing purposes:
 
     Hiku.initWithParameters(success, failure, {appId: 'XXX', addSecret: 'XXXX'});
     Hiku.startSetup(success, failure);
+````    
+    
+Example 2 - advanced options
+```
+    var params = {
+        appId: 'XXX', 
+        addSecret: 'XXXX', 
+        email: 'email@email.com', 
+        partnerLogo: '<logo url>'
+    }
 
-    Hiku.initWithParameters(success, failure, {appId: 'XXX', addSecret: 'XXXX', 'email', 'email@email.com', 'partnerLogo': '<logo url>'});
+    Hiku.initWithParameters(success, failure, params);
     Hiku.startSetup(success, failure);
 
     Hiku.launchTipsFlow(success, failure);
