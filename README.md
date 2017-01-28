@@ -64,4 +64,9 @@ Basic operations, you'll want to copy-paste this for testing purposes:
 
     Hiku.initWithParameters(success, failure, {appId: 'XXX', addSecret: 'XXXX'});
     Hiku.startSetup(success, failure);
+
+    Hiku.initWithParameters(success, failure, {appId: 'XXX', addSecret: 'XXXX', 'email', 'email@email.com', 'partnerLogo': '<logo url>'});
+    Hiku.startSetup(success, failure);
+
     Hiku.launchTipsFlow(success, failure);
+```
