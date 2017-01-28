@@ -82,3 +82,18 @@ Example 2 - advanced options
 
     Hiku.launchTipsFlow(success, failure);
 ```
+
+Example Response IOS successful startSetup
+```js
+    {success: true, message: "User authentication status: Success"}
+    {success: true, message: "Application authorization status: Success Authorization", token: "XXX"}
+
+    //when user cancels setup process
+    {success: true, message: "User cancelled setup"}
+`````
+
+Example Response IOS failed startSetup
+```js
+    {success: false, message: "User authentication status: Failed"}
+    {success: false, message: "Application authorization status: Failed", token: ""}
+````
